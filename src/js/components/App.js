@@ -83,7 +83,7 @@ export default function App( { appNode, restUrl, portals } ) {
 								case 'checkbox-filter':
 									return createPortal( <CheckboxFilter {...initProps} />, portalNode );
 								case 'calendar-filter':
-									return createPortal( <CalendarFilter {...initProps} />, portalNode );
+									return createPortal( <CalendarFilter {...initProps} eventData={eventData} />, portalNode );
 								default:
 									console.error( `Unknown component name: ${componentName}` );
 							}
