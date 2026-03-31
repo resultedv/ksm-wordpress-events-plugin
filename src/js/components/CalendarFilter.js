@@ -6,8 +6,9 @@ import 'dayjs/locale/de';
 
 import AppContext from './AppContext';
 import { useContext } from "react";
-
 export default function CalendarFilter( { showDaysOutsideCurrentMonth = true, eventData } ) {
+	console.log('CalendarFilter eventData:', eventData);
+
 	const { getFilter, setFilter, pageLang } = useContext( AppContext );
 	const today = dayjs();
 	const date = dayjs( getFilter( 'date_from' ) );
