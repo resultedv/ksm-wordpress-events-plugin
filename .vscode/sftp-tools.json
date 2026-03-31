@@ -1,0 +1,13 @@
+{
+  "servers": [
+    {
+      "name": "KSM Staging",
+      "host": "www.koelnisches-stadtmuseum.de",
+      "protocol": "sftp",
+      "port": 22,
+      "username": "ksm-staging",
+      "password": "9i6~1uBa9",
+      "remotePath": "/wp-content/plugins/webwprpp"
+    }
+  ]
+}

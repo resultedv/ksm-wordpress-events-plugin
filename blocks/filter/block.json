@@ -1,0 +1,25 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "web-event-filter/filter",
+  "version": "0.1.0",
+  "title": "Filter",
+  "category": "web-react-frontend-filter",
+  "icon": "filter",
+  "editorScript": "web-react-frontend-filter--register-blocks",
+  "viewScript": "web-react-frontend-filter--init-react",
+  "supports": {
+    "html": false
+  },
+  "attributes": {
+    "appId": {
+      "type": "string"
+    },
+    "label": {
+      "type": "string"
+    },
+    "metaKey": {
+      "type": "string"
+    }
+  }
+}

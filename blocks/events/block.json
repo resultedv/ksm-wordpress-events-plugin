@@ -1,0 +1,23 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "web-event-filter/events",
+  "version": "0.1.0",
+  "title": "Events",
+  "category": "web-react-frontend-filter",
+  "icon": "tickets-alt",
+  "editorScript": "web-react-frontend-filter--register-blocks",
+  "viewScript": "web-react-frontend-filter--init-react",
+  "supports": {
+    "html": false
+  },
+  "attributes": {
+    "appId": {
+      "type": "string"
+    },
+    "postsPerPage": {
+      "type": "number",
+      "default": 10
+    }
+  }
+}

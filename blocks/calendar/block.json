@@ -1,0 +1,23 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 2,
+  "name": "web-event-filter/calendar",
+  "version": "0.1.0",
+  "title": "Calendar",
+  "category": "web-react-frontend-filter",
+  "icon": "calendar-alt",
+  "editorScript": "web-react-frontend-filter--register-blocks",
+  "viewScript": "web-react-frontend-filter--init-react",
+  "supports": {
+    "html": false
+  },
+  "attributes": {
+    "appId": {
+      "type": "string"
+    },
+    "showDaysOutsideCurrentMonth": {
+      "type": "boolean",
+        "default": true
+    }
+  }
+}
