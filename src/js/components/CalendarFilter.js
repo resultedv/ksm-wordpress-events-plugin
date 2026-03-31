@@ -8,6 +8,20 @@ import AppContext from './AppContext';
 import { useContext } from "react";
 export default function CalendarFilter( { showDaysOutsideCurrentMonth = true, eventData } ) {
 	console.log('CalendarFilter eventData:', eventData);
+	console.log("EVENT SAMPLE:", eventData && eventData.body && eventData.body[0]);
+	console.log("EVENT FULL SAMPLE:", JSON.stringify(
+  eventData && eventData.body && eventData.body[0],
+  null,
+  2
+));
+	var eventDates = new Set(
+  (eventData && eventData.body ? eventData.body : []).map(function (event) {
+    if (!event) return null;
+    return event.date || event.start || (event.meta && event.meta.date);
+  }).filter(Boolean)
+);
+
+console.log("EVENT DATES:", eventDates);
 
 	const { getFilter, setFilter, pageLang } = useContext( AppContext );
 	const today = dayjs();

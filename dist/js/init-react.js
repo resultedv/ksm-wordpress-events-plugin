@@ -1,5 +1,4 @@
-alert("VS CODE TEST4443 8788");
-console.log("VS CODE TEST 888");
+
 /******/ (() => { // webpackBootstrap
 /******/ 	var __webpack_modules__ = ({
 
@@ -22833,10 +22832,12 @@ var de = __webpack_require__(494);
 
 
 
-function CalendarFilter(_ref) {
-  console.log("CALENDAR FILTER DIST TEST");
-  var _ref$showDaysOutsideC = _ref.showDaysOutsideCurrentMonth,
-    showDaysOutsideCurrentMonth = _ref$showDaysOutsideC === void 0 ? true : _ref$showDaysOutsideC;
+
+ function CalendarFilter(_ref) {
+  var _ref$showDaysOutside = _ref.showDaysOutsideCurrentMonth,
+      showDaysOutsideCurrentMonth = _ref$showDaysOutside === void 0 ? true : _ref$showDaysOutside,
+      eventData = _ref.eventData;
+      console.log("CALENDAR FILTER DIST TEST", eventData);
   var _useContext = (0,react.useContext)(components_AppContext),
     getFilter = _useContext.getFilter,
     setFilter = _useContext.setFilter,
@@ -26681,7 +26682,7 @@ function App(_ref) {
       case 'checkbox-filter':
         return /*#__PURE__*/(0,react_dom.createPortal)(/*#__PURE__*/App_React.createElement(CheckboxFilter, initProps), portalNode);
       case 'calendar-filter':
-        return /*#__PURE__*/(0,react_dom.createPortal)(/*#__PURE__*/App_React.createElement(CalendarFilter, initProps), portalNode);
+  return /*#__PURE__*/(0,react_dom.createPortal)(/*#__PURE__*/App_React.createElement(CalendarFilter, { ...initProps, eventData: eventData }), portalNode);
       default:
         console.error("Unknown component name: ".concat(componentName));
     }

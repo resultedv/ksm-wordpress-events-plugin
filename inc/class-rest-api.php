@@ -23,15 +23,29 @@ class Rest_Api {
 	/**
 	 * Initialize the class.
 	 */
-	public static function init(): void {
-		if ( did_action( Plugin::hook_name( 'init' ) ) ) {
-			return;
-		}
-
-		add_action( 'rest_api_init', array( __CLASS__, 'rest_api_init' ) );
-		add_filter( 'rest_event_query', array( __CLASS__, 'filter_rest_response' ), 10, 2 );
-		add_filter( 'query_vars', array( __CLASS__, 'register_public_query_vars' ) );
+public static function init(): void {
+	if ( did_action( Plugin::hook_name( 'init' ) ) ) {
+		return;
 	}
+
+	add_action( 'rest_api_init', array( __CLASS__, 'rest_api_init' ) );
+	add_filter( 'rest_event_query', array( __CLASS__, 'filter_rest_response' ), 10, 2 );
+	add_filter( 'query_vars', array( __CLASS__, 'register_public_query_vars' ) );
+	add_filter( 'rest_prepare_events', array( __CLASS__, 'add_event_date_to_response' ), 10, 3 );
+}
+public static function add_event_date_to_response( $response, $post, $request ) {
+	$post_id = $post->ID;
+
+	if ( ! isset( $response->data ) ) {
+		return $response;
+	}
+
+	$response->data['TEST_REST_FIELD'] = 'hello';
+	$response->data['date_start'] = get_post_meta( $post_id, 'date_start', true );
+	$response->data['date_end']   = get_post_meta( $post_id, 'date_end', true );
+
+	return $response;
+}
 
 	/**
 	 * Initialize the REST API functionality.
@@ -139,6 +153,12 @@ class Rest_Api {
 	 * @return array|null
 	 */
 	public static function get_custom_rest_field( array $object ): ?array {
-		return apply_filters( Plugin::hook_name( 'get_custom_rest_field' ), null, $object );
-	}
+	error_log('CUSTOM REST FIELD CALLED');
+
+	$post_id = $object['id'] ?? 0;
+
+	return array(
+		'date_start' => get_post_meta( $post_id, 'date_start', true ),
+	);
+}
 }
