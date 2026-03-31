@@ -22834,6 +22834,7 @@ var de = __webpack_require__(494);
 
 
 function CalendarFilter(_ref) {
+  console.log("CALENDAR FILTER DIST TEST");
   var _ref$showDaysOutsideC = _ref.showDaysOutsideCurrentMonth,
     showDaysOutsideCurrentMonth = _ref$showDaysOutsideC === void 0 ? true : _ref$showDaysOutsideC;
   var _useContext = (0,react.useContext)(components_AppContext),
