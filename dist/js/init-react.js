@@ -23283,14 +23283,15 @@ export default theme;`;
     var de = __webpack_require__(494);
     ;// ./plugin/src/js/components/CalendarFilter.js
 /* provided dependency */ var CalendarFilter_React = __webpack_require__(540);
-    function EventPickerDay(props) {
-  var day = props.day;
-  var eventDates = props.eventDates;
-  var dayKey = day.format('YYYY-MM-DD');
-  var hasEvent = eventDates && eventDates.has(dayKey);
+//CUSTOM DAY COMPONENT (ADDED)
+function EventPickerDay(props) {
+  var day = props.day; // existing prop from MUI
+  var eventDates = props.eventDates; //ADDED (passed via slotProps)
+  var dayKey = day.format('YYYY-MM-DD'); // ADDED (formal date)
+  var hasEvent = eventDates && eventDates.has(dayKey); //ADDED (check if the event exists)
 
   return /*#__PURE__*/CalendarFilter_React.createElement(PickersDay, Object.assign({}, props, {
-    sx: hasEvent ? {
+    sx: hasEvent ? { // ADDED (conditional styling)
       position: 'relative',
       '&::before': {
         content: '""',
@@ -23350,10 +23351,10 @@ export default theme;`;
         onYearChange: function onYearChange(year) {
           setDate(dayjs_min_default()().year(year.year()).month(0).date(1));
         },
-        slots: {
+        slots: { // ADDED (custom component injection)
           day: EventPickerDay
         },
-        slotProps: {
+        slotProps: { // ADDED (pass data into custom day) 
           day: {
             eventDates: eventDates
           }

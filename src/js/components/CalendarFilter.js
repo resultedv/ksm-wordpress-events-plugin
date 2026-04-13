@@ -14,6 +14,7 @@ export default function CalendarFilter( { showDaysOutsideCurrentMonth = true, ev
   null,
   2
 ));
+// ADDED (extract event dates from API)
 	var eventDates = new Set(
   (eventData && eventData.body ? eventData.body : []).map(function (event) {
     if (!event) return null;
@@ -21,7 +22,6 @@ export default function CalendarFilter( { showDaysOutsideCurrentMonth = true, ev
   }).filter(Boolean)
 );
 
-console.log("EVENT DATES:", eventDates);
 
 	const { getFilter, setFilter, pageLang } = useContext( AppContext );
 	const today = dayjs();
