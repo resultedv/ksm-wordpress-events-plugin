@@ -23283,30 +23283,22 @@ export default theme;`;
     var de = __webpack_require__(494);
     ;// ./plugin/src/js/components/CalendarFilter.js
 /* provided dependency */ var CalendarFilter_React = __webpack_require__(540);
-//CUSTOM DAY COMPONENT (ADDED)
-function EventPickerDay(props) {
-  var day = props.day; // existing prop from MUI
-  var eventDates = props.eventDates; //ADDED (passed via slotProps)
-  var dayKey = day.format('YYYY-MM-DD'); // ADDED (formal date)
-  var hasEvent = eventDates && eventDates.has(dayKey); //ADDED (check if the event exists)
+    //CUSTOM DAY COMPONENT (ADDED)
+    function EventPickerDay(props) {
+      var day = props.day; // existing prop from MUI
+      var eventDates = props.eventDates; //ADDED (passed via slotProps)
+      var dayKey = day.format('YYYY-MM-DD'); // ADDED (formal date)
+      var hasEvent = eventDates && eventDates.has(dayKey); //ADDED (check if the event exists)
 
-  return /*#__PURE__*/CalendarFilter_React.createElement(PickersDay, Object.assign({}, props, {
-    sx: hasEvent ? { // ADDED (conditional styling)
-      position: 'relative',
-      '&::before': {
-        content: '""',
-        position: 'absolute',
-        top: 2,
-        left: 2,
-        right: 2,
-        bottom: 2,
-        borderRadius: '50%',
-        border: '2px solid rgba(217, 45, 32, 0.5)',
-        pointerEvents: 'none'
-      }
-    } : {}
-  }));
-}
+      return /*#__PURE__*/CalendarFilter_React.createElement(PickersDay, Object.assign({}, props, {
+        sx: hasEvent ? {
+          backgroundColor: 'transparent',
+          backgroundImage: 'radial-gradient(circle, rgba(217, 45, 32, 0.2) 0%, rgba(217, 45, 32, 0.2) 68%, transparent 70%)',
+          fontWeight: 'bold'
+        } : {}
+      }));
+    }
+
 
 
 
