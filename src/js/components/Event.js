@@ -1,5 +1,8 @@
 import { Fragment } from "react";
 import DOMPurify from "dompurify";
+import dayjs from "dayjs";
+import 'dayjs/locale/de';
+dayjs.locale('de');
 
 export default function Event({event}) {
 	const escapeHTML = ( html ) => {
@@ -7,14 +10,19 @@ export default function Event({event}) {
 			dangerouslySetInnerHTML : { __html : DOMPurify.sanitize( html ) }
 		};
 	};
-
+console.log("EVENT IMAGE:", event.ksm?.featured_image, event.featured_media, event._embedded);
 	return (
 		<li key={event.id} className="ksm-event">
 			<div className="content-container">
 
-  {event.ksm?.date && (
-    <div className="datetime" {...escapeHTML(event.ksm?.date)} />
-  )}
+  {event.acf?.date?.start && (
+  <div className="datetime">
+    {dayjs(event.acf.date.start).format('dddd, DD.MM.YYYY')} |{" "}
+    {dayjs(event.acf.date.start).format('HH:mm')} –{" "}
+    {event.acf?.date?.end ? dayjs(event.acf.date.end).format('HH:mm') : ""}
+    {event.acf?.date?.end ? " Uhr" : ""}
+  </div>
+)}
 
   <h2 {...escapeHTML(event.title.rendered)} />
 
@@ -33,15 +41,30 @@ export default function Event({event}) {
   />
 
   {/* 🔥 MOVE INFO INSIDE */}
-  <div className="info-row">
-    {event.ksm?.info &&
-      Object.entries(event.ksm.info).map(([type, value]) => (
-        <span key={type}>
-          <strong>{type}:</strong>{" "}
-          <span {...escapeHTML(value)} />
-        </span>
-      ))}
-  </div>
+  <div className="info-container">
+  {event.acf?.target_group && (
+    <div><strong>Für</strong><br />{event.acf.target_group}</div>
+  )}
+
+  {event.acf?.organiser && (
+    <div><strong>Von</strong><br />{event.acf.organiser}</div>
+  )}
+
+  {event.acf?.speaker && (
+    <div><strong>Mit</strong><br />{event.acf.speaker}</div>
+  )}
+
+  {event.acf?.meeting_point && (
+    <div><strong>Treffpunkt</strong><br />{event.acf.meeting_point}</div>
+  )}
+
+  {event.acf?.costs && (
+    <div>
+      <strong>Teilnahme</strong><br />
+      {event.acf.costs.free_entry ? "kostenlos" : event.acf.costs.charge}
+    </div>
+  )}
+</div>
 
   {event.ksm?.registration_link && (
     <button>
