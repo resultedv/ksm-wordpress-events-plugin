@@ -1,0 +1,22 @@
+/* Override existing layout */
+.ksm-event {
+  display: grid !important;
+  grid-template-columns: 200px 1fr !important;
+  gap: 40px !important;
+}
+
+/* Fix content layout */
+.content-container {
+  display: block;
+}
+
+/* Inline info row */
+.info-row {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #444;
+}
+
+.info-row span {
+  margin-right: 10px;
+}
