@@ -23327,6 +23327,9 @@ export default theme;`;
         return event && event.ksm && event.ksm.date_start ? String(event.ksm.date_start).slice(0, 10) : null;
       }).filter(Boolean));
       console.log("EVENT DATES", Array.from(eventDates));
+      if (eventData && eventData.body && eventData.body.length > 0) {
+        console.log("EVENT FULL", JSON.stringify(eventData.body[0], null, 2));
+      }
 
       return /*#__PURE__*/CalendarFilter_React.createElement(CalendarFilter_React.Fragment, null, /*#__PURE__*/CalendarFilter_React.createElement(LocalizationProvider, {
         dateAdapter: AdapterDayjs,
@@ -25346,28 +25349,41 @@ export default theme;`;
       };
       return /*#__PURE__*/Event_React.createElement("li", {
         key: event.id,
-        className: "ksm-event"
-      }, /*#__PURE__*/Event_React.createElement("div", {
-        className: "content-container"
-      }, ((_event$ksm = event.ksm) === null || _event$ksm === void 0 ? void 0 : _event$ksm.date) && /*#__PURE__*/Event_React.createElement("div", extends_extends({
-        className: "datetime"
-      }, escapeHTML((_event$ksm2 = event.ksm) === null || _event$ksm2 === void 0 ? void 0 : _event$ksm2.date))), /*#__PURE__*/Event_React.createElement("h2", escapeHTML(event.title.rendered)), /*#__PURE__*/Event_React.createElement("div", extends_extends({
-        className: "type-institute"
-      }, escapeHTML([(_event$acf = event.acf) === null || _event$acf === void 0 ? void 0 : _event$acf.type, (_event$acf2 = event.acf) === null || _event$acf2 === void 0 ? void 0 : _event$acf2.institute].filter(Boolean).join((_event$ksm3 = event.ksm) === null || _event$ksm3 === void 0 ? void 0 : _event$ksm3.sep)))), /*#__PURE__*/Event_React.createElement("blockquote", escapeHTML(event.content.rendered)), /*#__PURE__*/Event_React.createElement("div", extends_extends({
-        className: "featured-image"
-      }, escapeHTML((_event$ksm4 = event.ksm) === null || _event$ksm4 === void 0 ? void 0 : _event$ksm4.featured_image))), ((_event$ksm5 = event.ksm) === null || _event$ksm5 === void 0 ? void 0 : _event$ksm5.registration_link) && /*#__PURE__*/Event_React.createElement("button", null, /*#__PURE__*/Event_React.createElement("a", {
-        href: (_event$ksm6 = event.ksm) === null || _event$ksm6 === void 0 ? void 0 : _event$ksm6.registration_link,
-        target: "_blank"
-      }, "Zur Anmeldung"))), /*#__PURE__*/Event_React.createElement("ul", {
-        className: "info-container"
-      }, ((_event$ksm7 = event.ksm) === null || _event$ksm7 === void 0 ? void 0 : _event$ksm7.info) && Object.entries((_event$ksm8 = event.ksm) === null || _event$ksm8 === void 0 ? void 0 : _event$ksm8.info).map(function (_ref2) {
-        var _ref3 = _slicedToArray(_ref2, 2),
-          type = _ref3[0],
-          value = _ref3[1];
-        return /*#__PURE__*/Event_React.createElement("li", {
-          key: type
-        }, /*#__PURE__*/Event_React.createElement("strong", null, type), /*#__PURE__*/Event_React.createElement("br", null), /*#__PURE__*/Event_React.createElement("span", escapeHTML(value)));
-      })));
+        className: "ksm-event" },
+     /*#__PURE__*/Event_React.createElement("div", {
+          className: "event-date-block"
+        },
+    /*#__PURE__*/Event_React.createElement("span", {
+          className: "day"
+        },
+          dayjs_min_default()(event.acf && event.acf.date ? event.acf.date.start : null).format("D.")
+        ),
+    /*#__PURE__*/Event_React.createElement("span", {
+          className: "month"
+        },
+          dayjs_min_default()(event.acf && event.acf.date ? event.acf.date.start : null).format("MMMM")
+        )
+        ), /*#__PURE__*/Event_React.createElement("div", {
+          className: "content-container"
+        }, ((_event$ksm = event.ksm) === null || _event$ksm === void 0 ? void 0 : _event$ksm.date) && /*#__PURE__*/Event_React.createElement("div", extends_extends({
+          className: "datetime"
+        }, escapeHTML((_event$ksm2 = event.ksm) === null || _event$ksm2 === void 0 ? void 0 : _event$ksm2.date))), /*#__PURE__*/Event_React.createElement("h2", escapeHTML(event.title.rendered)), /*#__PURE__*/Event_React.createElement("div", extends_extends({
+          className: "type-institute"
+        }, escapeHTML([(_event$acf = event.acf) === null || _event$acf === void 0 ? void 0 : _event$acf.type, (_event$acf2 = event.acf) === null || _event$acf2 === void 0 ? void 0 : _event$acf2.institute].filter(Boolean).join((_event$ksm3 = event.ksm) === null || _event$ksm3 === void 0 ? void 0 : _event$ksm3.sep)))), /*#__PURE__*/Event_React.createElement("blockquote", escapeHTML(event.content.rendered)), /*#__PURE__*/Event_React.createElement("div", extends_extends({
+          className: "featured-image"
+        }, escapeHTML((_event$ksm4 = event.ksm) === null || _event$ksm4 === void 0 ? void 0 : _event$ksm4.featured_image))), ((_event$ksm5 = event.ksm) === null || _event$ksm5 === void 0 ? void 0 : _event$ksm5.registration_link) && /*#__PURE__*/Event_React.createElement("button", null, /*#__PURE__*/Event_React.createElement("a", {
+          href: (_event$ksm6 = event.ksm) === null || _event$ksm6 === void 0 ? void 0 : _event$ksm6.registration_link,
+          target: "_blank"
+        }, "Zur Anmeldung"))), /*#__PURE__*/Event_React.createElement("ul", {
+          className: "info-container"
+        }, ((_event$ksm7 = event.ksm) === null || _event$ksm7 === void 0 ? void 0 : _event$ksm7.info) && Object.entries((_event$ksm8 = event.ksm) === null || _event$ksm8 === void 0 ? void 0 : _event$ksm8.info).map(function (_ref2) {
+          var _ref3 = _slicedToArray(_ref2, 2),
+            type = _ref3[0],
+            value = _ref3[1];
+          return /*#__PURE__*/Event_React.createElement("li", {
+            key: type
+          }, /*#__PURE__*/Event_React.createElement("strong", null, type), /*#__PURE__*/Event_React.createElement("br", null), /*#__PURE__*/Event_React.createElement("span", escapeHTML(value)));
+        })));
     }
     ;// ./plugin/src/js/components/EventSeparator.js
 /* provided dependency */ var EventSeparator_React = __webpack_require__(540);
