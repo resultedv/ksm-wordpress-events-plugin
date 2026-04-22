@@ -1,7 +1,7 @@
 <?php
 /**
  * Plugin Name: WEB React Frontend Filter
- * Version: 1.0
+ * Version: 1.1
  */
 
 namespace WEB\ReactFrontendFilter;
@@ -11,26 +11,20 @@ if ( ! defined( 'ABSPATH' ) ) {
 }
 
 Plugin::init();
+
 /**
  * Plugin functionality.
  */
 class Plugin {
-	const VERSION = '1.0';
+	const VERSION = '1.1';
 	const __FILE__ = __FILE__;
 	const __DIR__ = __DIR__;
 	const HOOK_NAMESPACE = 'web/react_frontend_filter/';
 
-	/**
-	 * Add Hook namespace to hook name.
-	 */
 	public static function hook_name( string $name ): string {
 		return static::HOOK_NAMESPACE . $name;
 	}
 
-	/**
-	 * Initialize the plugin.
-	 * @return void
-	 */
 	public static function init(): void {
 		if ( did_action( static::hook_name( 'init' ) ) ) {
 			return;
@@ -46,11 +40,6 @@ class Plugin {
 		do_action( static::hook_name( 'init' ) );
 	}
 
-	/**
-	 * Register block category.
-	 * @param array $categories
-	 * @return array
-	 */
 	public static function register_block_category( array $categories ): array {
 		return array_merge(
 			$categories,
@@ -63,10 +52,6 @@ class Plugin {
 		);
 	}
 
-	/**
-	 * Register blocks.
-	 * @return void
-	 */
 	public static function register_blocks(): void {
 		$block_dir = static::__DIR__ . '/dist/blocks';
 
@@ -74,11 +59,6 @@ class Plugin {
 		register_block_type( "{$block_dir}/filter" );
 		register_block_type( "{$block_dir}/calendar" );
 	}
-
-	/**
-	 * Enqueue scripts.
-	 * @return void
-	 */
 
 	public static function wp_enqueue_scripts(): void {
 		if ( ! (
@@ -88,23 +68,31 @@ class Plugin {
 		) ) {
 			return;
 		}
+
 		wp_enqueue_script(
 			'web-react-frontend-filter--init-react',
 			plugins_url( 'dist/js/init-react.js', __FILE__ ),
 			array(),
-			static::VERSION,
+			time(),
 			true
 		);
 
-		wp_localize_script( 'web-react-frontend-filter--init-react', 'webReactFrontendFilter', array(
-			'restUrl' => get_rest_url(),
-		) );
+		wp_enqueue_style(
+			'webwprpp-style',
+			plugin_dir_url( __FILE__ ) . 'style.css',
+			array(),
+			time()
+		);
+
+		wp_localize_script(
+			'web-react-frontend-filter--init-react',
+			'webReactFrontendFilter',
+			array(
+				'restUrl' => get_rest_url(),
+			)
+		);
 	}
 
-	/**
-	 * Enqueue block editor assets.
-	 * @return void
-	 */
 	public static function enqueue_block_editor_assets(): void {
 		$assets = wp_json_file_decode(
 			plugin_dir_path( __FILE__ ) . '/admin/dist/assets.json',
@@ -122,11 +110,3 @@ class Plugin {
 		);
 	}
 }
-add_action('wp_enqueue_scripts', function() {
-    wp_enqueue_style(
-        'webwprpp-style',
-        plugin_dir_url(__FILE__) . 'style.css',
-        [],
-        '1.0'
-    );
-});
