@@ -122,3 +122,11 @@ class Plugin {
 		);
 	}
 }
+add_action('wp_enqueue_scripts', function() {
+    wp_enqueue_style(
+        'webwprpp-style',
+        plugin_dir_url(__FILE__) . 'style.css',
+        [],
+        '1.0'
+    );
+});
