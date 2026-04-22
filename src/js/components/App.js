@@ -59,7 +59,8 @@ export default function App( { appNode, restUrl, portals } ) {
 			},
 		},
 	});
-
+console.log('CALENDAR body:', eventData?.body);
+console.log('CALENDAR first event:', eventData?.body?.[0]);
 	return (
 		<ThemeProvider theme={theme}>
 			<AppContext.Provider value={{ setFilter, getFilter, paramsChanged, eventData, restUrl, pageLang }}>
