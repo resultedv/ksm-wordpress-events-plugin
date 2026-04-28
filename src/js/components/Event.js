@@ -52,6 +52,18 @@ const getImageCredit = () => {
 };
 
 const imageCredit = getImageCredit();
+const detailBaseUrl =
+  "https://www.museen.koeln/besuchen/kalender/veranstaltungsdetailseite/";
+
+const cleanTitle = event.title?.rendered
+  ?.replace(/&#8217;/g, "’")
+  ?.replace(/&#8211;/g, "–")
+  ?.replace(/&#038;/g, "&")
+  ?.replace(/&amp;/g, "&")
+  ?.replace(/<[^>]*>/g, "") || "";
+  const month = dayjs(event.acf?.date?.start).format("YYYY-MM");
+
+const detailUrl = `${detailBaseUrl}${encodeURIComponent(cleanTitle)}`;
   return (
     <li key={event.id} className="ksm-event">
       <div className="event-date-block">
@@ -146,7 +158,12 @@ const imageCredit = getImageCredit();
     ))}
 </div>
 
-<a href={event.link} className="details-button">
+<a
+  href={`https://www.museen.koeln/besuchen/veranstaltungen?date=${month}&location=10&search=`}
+  className="details-button"
+  target="_blank"
+  rel="noreferrer"
+>
   Veranstaltungsdetails
 </a>
 
