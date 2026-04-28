@@ -1,10 +1,30 @@
 import { Fragment } from "react";
 import DOMPurify from "dompurify";
+import { useEffect, useState } from "react";
 import dayjs from "dayjs";
 import 'dayjs/locale/de';
 dayjs.locale('de');
 
 export default function Event({event}) {
+	const [imageUrl, setImageUrl] = useState(null);
+
+useEffect(() => {
+	const mediaUrl = event?._links?.['wp:featuredmedia']?.[0]?.href;
+
+	if (!mediaUrl) {
+		setImageUrl(null);
+		return;
+	}
+
+	fetch(mediaUrl)
+		.then((res) => res.json())
+		.then((data) => {
+			setImageUrl(data?.source_url || null);
+		})
+		.catch(() => {
+			setImageUrl(null);
+		});
+}, [event]);
 	const escapeHTML = ( html ) => {
 		return {
 			dangerouslySetInnerHTML : { __html : DOMPurify.sanitize( html ) }
@@ -36,9 +56,11 @@ console.log("EVENT IMAGE:", event.ksm?.featured_image, event.featured_media, eve
 
   <blockquote {...escapeHTML(event.content.rendered)} />
 
-  <div className="featured-image"
-    {...escapeHTML(event.ksm?.featured_image)}
-  />
+  {imageUrl && (
+	<div className="featured-image">
+		<img src={imageUrl} alt={event.title?.rendered || ''} />
+	</div>
+)}
 
   {/* 🔥 MOVE INFO INSIDE */}
   <div className="info-container">
