@@ -1,28 +1,131 @@
-.ksm-event {
-    max-width: 700px;
-    margin: 40px auto;
-    padding: 20px;
+.ksm-events .ksm-event {
+  display: flex !important;
+  align-items: stretch !important;
+  gap: 24px !important;
+  margin-bottom: 40px !important;
 }
 
-.ksm-event h2 {
-    font-size: 32px;
-    font-weight: bold;
+.ksm-events .ksm-event .event-date-block {
+  background: #000 !important;
+  color: #fff !important;
+  width: 110px !important;
+  min-width: 110px !important;
+  align-self: stretch !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  align-items: center !important;
+  text-align: center !important;
+  padding: 20px 10px !important;
 }
 
-.ksm-event blockquote {
-    font-size: 16px;
-    line-height: 1.6;
-    color: #333;
+.ksm-events .ksm-event .event-date-day {
+  color: #fff !important;
+  font-size: 42px !important;
+  font-weight: 800 !important;
+  line-height: 1 !important;
 }
 
-.info-row {
-    margin-top: 10px;
-    font-size: 14px;
-    color: #555;
+.ksm-events .ksm-event .event-date-month {
+  color: #fff !important;
+  font-size: 30px !important;
+  font-weight: 400 !important;
+  line-height: 1 !important;
+  margin-top: 6px !important;
 }
 
-.featured-image img {
-	max-width: 100%;
-	height: auto;
-	display: block;
+.ksm-events .ksm-event .featured-image {
+  width: 260px !important;
+  min-width: 260px !important;
+}
+
+.ksm-events .ksm-event .featured-image img {
+  width: 100% !important;
+  height: 300px !important;
+  object-fit: cover !important;
+  display: block !important;
+}
+
+.ksm-events .ksm-event .image-credit {
+  font-size: 12px !important;
+  line-height: 1.3 !important;
+  margin-top: 8px !important;
+  font-style: italic !important;
+  color: #000 !important;
+}
+
+.ksm-events .ksm-event .image-credit p {
+  margin: 0 !important;
+}
+
+.ksm-events .ksm-event .content-container {
+  flex: 1 !important;
+  display: flex !important;
+  flex-direction: column !important;
+}
+
+.ksm-events .ksm-event .datetime {
+  color: #000 !important;
+  font-size: 16px !important;
+  font-weight: 700 !important;
+  margin-bottom: 4px !important;
+}
+
+.ksm-events .ksm-event .type-institute {
+  margin-bottom: 6px !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+}
+
+.ksm-events .ksm-event h2 {
+  margin: 0 0 8px 0 !important;
+  font-size: 30px !important;
+  line-height: 1.1 !important;
+  font-weight: 900 !important;
+}
+
+.ksm-events .ksm-event blockquote {
+  display: none !important;
+}
+
+.ksm-events .ksm-event .info-container {
+  display: flex !important;
+  flex-wrap: wrap !important;
+  gap: 0 4px !important;
+  font-size: 13px !important;
+  line-height: 1.4 !important;
+  margin-top: 6px !important;
+  margin-bottom: 10px !important;
+}
+
+.ksm-events .ksm-event .info-separator {
+  margin: 0 6px !important;
+}
+
+.ksm-events .ksm-event .info-container span {
+  display: inline-block !important;
+}
+
+.ksm-events .ksm-event .info-container strong {
+  font-weight: 800 !important;
+  margin-right: 4px !important;
+}
+
+.ksm-events .ksm-event .details-button {
+  align-self: flex-end !important;
+  display: inline-block !important;
+  width: auto !important;
+  max-width: fit-content !important;
+  background: #000 !important;
+  color: #fff !important;
+  padding: 9px 18px !important;
+  text-decoration: none !important;
+  font-weight: 800 !important;
+  font-size: 13px !important;
+  margin-top: 18px !important;
+  margin-right: 40px !important;
+}
+
+.ksm-events .ksm-event .details-button:hover {
+  background: #333 !important;
 }

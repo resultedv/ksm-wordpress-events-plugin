@@ -42,12 +42,11 @@ export default function Events() {
 						{eventData.body.map(event => {
 							const newDate = dayjs(event.acf?.date?.start).format( 'YYYY-MM-DD' );
 
-							const dateSep = lastDate !== newDate && <EventSeparator date={dayjs( newDate )} />;
+							// const dateSep = lastDate !== newDate && <EventSeparator date={dayjs( newDate )} />;
 							lastDate = newDate;
 
-							return (
+						return (
 								<>
-									{dateSep}
 									<Event event={event} />
 								</>
 							);
